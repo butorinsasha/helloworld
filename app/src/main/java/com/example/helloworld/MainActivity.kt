@@ -1,12 +1,14 @@
 package com.example.helloworld
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.helloworld.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,12 +21,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        Toast.makeText(
+            /* context = */ this,
+            /* text = */    "Can you see me?",
+            /* duration = */Toast.LENGTH_SHORT
+        ).show()
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        Log.d(this.localClassName, "Done creating the app")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -41,5 +44,19 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun topClick(v: View) {
+        Toast
+            .makeText(this, "Top button clicked", Toast.LENGTH_SHORT)
+            .show()
+        Log.i(this.localClassName, "The user clicked the top button")
+    }
+
+    fun bottomClick(v: View) {
+        Toast
+            .makeText(this, "Bottom button clicked", Toast.LENGTH_LONG)
+            .show()
+        Log.i(this.localClassName, "The user clicked the bottom button")
     }
 }
